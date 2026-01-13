@@ -6,15 +6,21 @@ interface PinListItemProps {
   pin: Pin;
   index: number;
   onDelete: (id: string) => void;
+  onHover: (id: string | null) => void;
 }
 
 export default function PinListItem({
   pin,
   index,
   onDelete,
+  onHover,
 }: PinListItemProps) {
   return (
-    <div className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors border border-gray-200">
+    <div
+      className="bg-gray-50 rounded-lg p-4 hover:bg-blue-50 hover:border-blue-300 transition-all duration-200 border border-gray-200 cursor-pointer"
+      onMouseEnter={() => onHover(pin.id)}
+      onMouseLeave={() => onHover(null)}
+    >
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2">

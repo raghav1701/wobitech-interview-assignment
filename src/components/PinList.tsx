@@ -6,9 +6,14 @@ import PinListItem from "./PinListItem";
 interface PinListProps {
   pins: Pin[];
   onDeletePin: (id: string) => void;
+  onPinHover: (id: string | null) => void;
 }
 
-export default function PinList({ pins, onDeletePin }: PinListProps) {
+export default function PinList({
+  pins,
+  onDeletePin,
+  onPinHover,
+}: PinListProps) {
   return (
     <div className="w-full lg:w-1/3 h-1/2 lg:h-full bg-white shadow-lg overflow-y-auto">
       <div className="p-6">
@@ -53,6 +58,7 @@ export default function PinList({ pins, onDeletePin }: PinListProps) {
                 pin={pin}
                 index={index}
                 onDelete={onDeletePin}
+                onHover={onPinHover}
               />
             ))}
           </div>

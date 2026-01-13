@@ -10,9 +10,15 @@ interface MapViewProps {
   pins: Pin[];
   center: [number, number];
   onMapClick: (lat: number, lng: number) => void;
+  hoveredPinId: string | null;
 }
 
-export default function MapView({ pins, center, onMapClick }: MapViewProps) {
+export default function MapView({
+  pins,
+  center,
+  onMapClick,
+  hoveredPinId,
+}: MapViewProps) {
   useEffect(() => {
     // Import Leaflet CSS only on client side
     import("leaflet/dist/leaflet.css");
@@ -21,7 +27,7 @@ export default function MapView({ pins, center, onMapClick }: MapViewProps) {
   return (
     <div className="w-full lg:w-2/3 h-1/2 lg:h-full relative">
       <MapContainer
-        key="map-container" // Add unique key to prevent re-initialization
+        key="map-container"
         center={center}
         zoom={13}
         className="h-full w-full"
@@ -33,7 +39,7 @@ export default function MapView({ pins, center, onMapClick }: MapViewProps) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <MapClickHandler onMapClick={onMapClick} />
-        <PinMarkers pins={pins} />
+        <PinMarkers pins={pins} hoveredPinId={hoveredPinId} />
       </MapContainer>
 
       <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-4 max-w-xs z-[1000]">

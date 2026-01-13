@@ -19,6 +19,7 @@ const MapView = dynamic(() => import("@/components/MapView"), {
 export default function Home() {
   const [pins, setPins] = useState<Pin[]>([]);
   const [center] = useState<[number, number]>([40.7128, -74.006]); // NYC default
+  const [hoveredPinId, setHoveredPinId] = useState<string | null>(null);
 
   useEffect(() => {
     // Import and initialize Leaflet icons only on client side
@@ -52,8 +53,17 @@ export default function Home() {
 
   return (
     <div className="flex flex-col lg:flex-row h-screen bg-gray-50">
-      <MapView pins={pins} center={center} onMapClick={handleMapClick} />
-      <PinList pins={pins} onDeletePin={deletePin} />
+      <MapView
+        pins={pins}
+        center={center}
+        onMapClick={handleMapClick}
+        hoveredPinId={hoveredPinId}
+      />
+      <PinList
+        pins={pins}
+        onDeletePin={deletePin}
+        onPinHover={setHoveredPinId}
+      />
     </div>
   );
 }
