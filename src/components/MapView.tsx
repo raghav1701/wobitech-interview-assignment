@@ -22,16 +22,15 @@ export default function MapView({
   hoveredPinId,
 }: MapViewProps) {
   useEffect(() => {
-    // Import Leaflet CSS only on client side
     import("leaflet/dist/leaflet.css");
   }, []);
 
   return (
-    <div className="w-full lg:w-2/3 h-1/2 lg:h-full relative">
+    <div className="w-full h-full">
       <MapContainer
         key="map-container"
         center={center}
-        zoom={13}
+        zoom={11}
         className="h-full w-full"
         zoomControl={true}
         scrollWheelZoom={true}
@@ -47,16 +46,6 @@ export default function MapView({
           onPinDrag={onPinDrag}
         />
       </MapContainer>
-
-      <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-4 max-w-xs z-[1000]">
-        <h2 className="font-bold text-lg mb-2">Map Pinboard</h2>
-        <p className="text-sm text-gray-600">
-          Click anywhere on the map to drop a pin
-        </p>
-        <p className="text-xs text-gray-500 mt-1">
-          💡 Drag pins to reposition them
-        </p>
-      </div>
     </div>
   );
 }
