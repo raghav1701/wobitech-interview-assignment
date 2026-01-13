@@ -10,6 +10,7 @@ interface MapViewProps {
   pins: Pin[];
   center: [number, number];
   onMapClick: (lat: number, lng: number) => void;
+  onPinDrag: (id: string, lat: number, lng: number) => void;
   hoveredPinId: string | null;
 }
 
@@ -17,6 +18,7 @@ export default function MapView({
   pins,
   center,
   onMapClick,
+  onPinDrag,
   hoveredPinId,
 }: MapViewProps) {
   useEffect(() => {
@@ -39,13 +41,20 @@ export default function MapView({
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <MapClickHandler onMapClick={onMapClick} />
-        <PinMarkers pins={pins} hoveredPinId={hoveredPinId} />
+        <PinMarkers
+          pins={pins}
+          hoveredPinId={hoveredPinId}
+          onPinDrag={onPinDrag}
+        />
       </MapContainer>
 
       <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-4 max-w-xs z-[1000]">
         <h2 className="font-bold text-lg mb-2">Map Pinboard</h2>
         <p className="text-sm text-gray-600">
           Click anywhere on the map to drop a pin
+        </p>
+        <p className="text-xs text-gray-500 mt-1">
+          💡 Drag pins to reposition them
         </p>
       </div>
     </div>

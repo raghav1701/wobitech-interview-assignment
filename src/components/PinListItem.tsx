@@ -30,6 +30,9 @@ export default function PinListItem({
             <span className="text-xs text-gray-500">
               {pin.lat.toFixed(4)}, {pin.lng.toFixed(4)}
             </span>
+            {pin.isGeocoding && (
+              <span className="text-xs text-orange-500 animate-pulse">●</span>
+            )}
           </div>
           {pin.isGeocoding ? (
             <div className="flex items-center gap-2 text-gray-400 text-sm">
@@ -49,7 +52,7 @@ export default function PinListItem({
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                 />
               </svg>
-              <span>Loading address...</span>
+              <span>{pin.address}</span>
             </div>
           ) : (
             <p className="text-sm text-gray-700 leading-relaxed">

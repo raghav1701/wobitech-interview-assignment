@@ -47,6 +47,31 @@ export default function Home() {
     );
   };
 
+  const handlePinDrag = async (id: string, lat: number, lng: number) => {
+    // Update pin position immediately
+    setPins((prev) =>
+      prev.map((pin) =>
+        pin.id === id
+          ? {
+              ...pin,
+              lat,
+              lng,
+              address: "Updating address...",
+              isGeocoding: true,
+            }
+          : pin
+      )
+    );
+
+    // Fetch new address
+    const address = await reverseGeocode(lat, lng);
+    setPins((prev) =>
+      prev.map((pin) =>
+        pin.id === id ? { ...pin, address, isGeocoding: false } : pin
+      )
+    );
+  };
+
   const deletePin = (id: string) => {
     setPins((prev) => prev.filter((pin) => pin.id !== id));
   };
@@ -57,6 +82,7 @@ export default function Home() {
         pins={pins}
         center={center}
         onMapClick={handleMapClick}
+        onPinDrag={handlePinDrag}
         hoveredPinId={hoveredPinId}
       />
       <PinList
