@@ -28,3 +28,38 @@
     animation: fadeIn 0.4s ease-out forwards;
   }
 }
+
+/* Faded marker style */
+.faded-marker {
+  opacity: 0.3 !important;
+  transition: opacity 0.3s ease;
+}
+
+/* Custom Leaflet Popup Styles - Compact */
+.custom-popup-compact .leaflet-popup-content-wrapper {
+  background: white;
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e5e7eb;
+}
+
+.custom-popup-compact .leaflet-popup-content {
+  margin: 0;
+  min-width: 180px;
+}
+
+.custom-popup-compact .leaflet-popup-tip {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-top: none;
+  border-right: none;
+}
+
+.custom-popup-compact .leaflet-popup-close-button {
+  display: none;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  display: none;
+}

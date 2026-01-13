@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { Pin } from "@/types/pin";
 import MapClickHandler from "./MapClickHandler";
 import PinMarkers from "./PinMarkers";
+import "leaflet/dist/leaflet.css";
 
 interface MapViewProps {
   pins: Pin[];
@@ -12,6 +12,8 @@ interface MapViewProps {
   onMapClick: (lat: number, lng: number) => void;
   onPinDrag: (id: string, lat: number, lng: number) => void;
   hoveredPinId: string | null;
+  selectedPinId: string | null;
+  onPinSelect: (pinId: string | null) => void;
 }
 
 export default function MapView({
@@ -20,11 +22,9 @@ export default function MapView({
   onMapClick,
   onPinDrag,
   hoveredPinId,
+  selectedPinId,
+  onPinSelect,
 }: MapViewProps) {
-  useEffect(() => {
-    import("leaflet/dist/leaflet.css");
-  }, []);
-
   return (
     <div className="w-full h-full">
       <MapContainer
@@ -43,7 +43,9 @@ export default function MapView({
         <PinMarkers
           pins={pins}
           hoveredPinId={hoveredPinId}
+          selectedPinId={selectedPinId}
           onPinDrag={onPinDrag}
+          onPinSelect={onPinSelect}
         />
       </MapContainer>
     </div>

@@ -64,12 +64,12 @@ export default function PinListItem({
       onMouseEnter={() => onHover(pin.id)}
       onMouseLeave={() => onHover(null)}
     >
-      <div className="py-4 px-2 hover:bg-blue-50 rounded-lg transition-colors duration-200">
-        <div className="flex items-start justify-between gap-3">
+      <div className="py-3 sm:py-4 px-2 hover:bg-blue-50 rounded-lg transition-colors duration-200">
+        <div className="flex items-start justify-between gap-2 sm:gap-3">
           {/* Pin badge */}
           <div className="flex-shrink-0">
-            <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center">
-              <span className="text-blue-600 font-semibold text-sm">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-50 flex items-center justify-center">
+              <span className="text-blue-600 font-semibold text-xs sm:text-sm">
                 #{index + 1}
               </span>
             </div>
@@ -77,13 +77,13 @@ export default function PinListItem({
 
           {/* Content */}
           <div className="flex-1 min-w-0">
-            <h3 className="text-base font-semibold text-gray-900 mb-2">
+            <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-1 sm:mb-2">
               Pin #{index + 1}
             </h3>
 
-            <div className="flex items-start gap-1.5 text-sm text-gray-500">
+            <div className="flex items-start gap-1 sm:gap-1.5 text-xs sm:text-sm text-gray-500">
               <svg
-                className="w-4 h-4 flex-shrink-0 mt-0.5"
+                className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 mt-0.5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -101,22 +101,22 @@ export default function PinListItem({
                   d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                 />
               </svg>
-              <span className="font-normal">
+              <span className="font-normal break-all">
                 {formattedLat} {formattedLng}
               </span>
             </div>
           </div>
 
-          {/* Delete button - Red circular with bin icon */}
+          {/* Delete button */}
           <button
             onClick={handleDelete}
-            className="flex-shrink-0 w-10 h-10 rounded-full border-2 border-white-200
+            className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white-50 border-2
               hover:bg-red-500 hover:border-red-500 flex items-center justify-center
               transition-all duration-200 group"
             aria-label="Delete pin"
           >
             <svg
-              className="h-5 w-5 text-red-500 group-hover:text-white transition-colors"
+              className="h-4 w-4 sm:h-5 sm:w-5 text-red-500 group-hover:text-white transition-colors"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -132,7 +132,7 @@ export default function PinListItem({
         </div>
       </div>
 
-      {/* Line separator - only if not last item */}
+      {/* Line separator */}
       {!isLast && <div className="h-px bg-gray-200 mx-2"></div>}
     </div>
   );
